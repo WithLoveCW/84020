@@ -56,64 +56,53 @@
   display: block;
   z-index: 0;
 }
-	#mainMessage {
+	/* ===== MESSAGE GROUP POSITION ===== */
+#messageGroup {
   position: absolute;
-  z-index: 1;
-  visibility: hidden;
 
-  /* ===== MAIN MESSAGE CONTROLS ===== */
-
-  /* MOVE UP/DOWN: decrease = up, increase = down */
+  /* MOVE BOTH MESSAGES TOGETHER
+     Increase = DOWN
+     Decrease = UP */
   top: 44%;
 
-  /* HORIZONTAL POSITION: 50% = centred */
   left: 50%;
   transform: translateX(-50%);
 
-  /* TEXT WIDTH: decrease = narrower, increase = wider */
-  width: 58%;
+  width: 100%;
+  z-index: 1;
+  visibility: hidden;
 
   text-align: center;
+}
+
+
+/* ===== MAIN MESSAGE ===== */
+#mainMessage {
+  /* CHANGE MAIN MESSAGE WIDTH HERE */
+  width: 52%;
+
+  margin: 0 auto;
 
   font-family: 'Aesthet', serif;
-
-  /* TEXT SIZE */
   font-size: clamp(28px, 4vh, 48px);
-
   line-height: 1;
 
-  /* TEXT COLOUR */
   color: #0A2D6D;
 }
 
 
+/* ===== SECONDARY MESSAGE ===== */
 #secondaryMessage {
-  position: absolute;
-  z-index: 1;
-  visibility: hidden;
+  /* CHANGE SECONDARY MESSAGE WIDTH HERE */
+  width: 48%;
 
-  /* ===== SECONDARY MESSAGE CONTROLS ===== */
-
-  /* MOVE UP/DOWN: decrease = up, increase = down */
-  top: 57%;
-
-  /* HORIZONTAL POSITION: 50% = centred */
-  left: 50%;
-  transform: translateX(-50%);
-
-  /* TEXT WIDTH: decrease = narrower, increase = wider */
-  width: 52%;
-
-  text-align: center;
+  /* CHANGE GAP BELOW MAIN MESSAGE HERE */
+  margin: 18px auto 0;
 
   font-family: 'Aesthet', serif;
-
-  /* TEXT SIZE */
   font-size: clamp(18px, 2.5vh, 30px);
-
   line-height: 1.05;
 
-  /* TEXT COLOUR */
   color: #0A2D6D;
 }
 	  
@@ -139,8 +128,10 @@
    <div id="js--sc--container" class="sc__container">
   <img id="backgroundImage" src="./images/back.png" alt="Background Image" />
 
+ <div id="messageGroup">
   <div id="mainMessage"></div>
-<div id="secondaryMessage"></div>
+  <div id="secondaryMessage"></div>
+</div>
 
   <canvas id="scratchCanvas"></canvas>
 </div>
@@ -249,8 +240,7 @@ if (bgMusic && bgMusic.paused) {
     console.log("Background music could not play:", error);
   });
 }
-		  document.getElementById("mainMessage").style.visibility = "visible";
-document.getElementById("secondaryMessage").style.visibility = "visible";
+		document.getElementById("messageGroup").style.visibility = "visible";
 		  const winSound = document.getElementById("winSound");
 
 if (winSound && winSound.paused) {
